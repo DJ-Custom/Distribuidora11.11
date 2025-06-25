@@ -1,3 +1,38 @@
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(*) {
+    animation-duration: 0.5s;
+}
+
+::view-transition-old(root) {
+    animation: slide-out-to-left 0.5s forwards;
+}
+::view-transition-new(root) {
+    animation: slide-in-from-right 0.5s forwards;
+}
+
+@keyframes slide-out-to-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide-out-to-right {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+    
+}
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -149,7 +184,6 @@ nav ul {
 /* ------------carrusel------------ */
 
 
-
 .carousel-container {
     width: 100%;
     overflow: hidden;
@@ -162,48 +196,28 @@ nav ul {
     font-size: 44px;
     font-weight: bold;
     color: var(--primary-color);
-    animation: wave 1s linear infinite, scroll 30s linear infinite;
+    animation: wave 2s linear infinite, scroll 50s linear infinite;
     width: 100%;
     text-align: center;
 }
 
- .curvy-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: yellow;
-    background-color: orange;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+@keyframes wave {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(0, 10px);
+    }
+}
 
-  .curvy-text span {
-    display: inline-block;
-    transform: rotate(-5deg) translateY(-10px);
-  }
-
-  .curvy-text span:nth-child(2) {
-    transform: rotate(5deg) translateY(10px);
-  }
-
-  .curvy-text span:nth-child(3) {
-    transform: rotate(-3deg) translateY(-5px);
-  }
-
-  .curvy-text span:nth-child(4) {
-    transform: rotate(3deg) translateY(5px);
-  }
-
-  .curvy-text span:nth-child(5) {
-    transform: rotate(-2deg) translateY(-2px);
-  }
-
-  .curvy-text span:nth-child(6) {
-    transform: rotate(2deg) translateY(2px);
-  }
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 /* 
 .txt-wave span {
     position: relative;
